@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Header from "./components/Header";
 import Records from "./components/Records";
 import AddLifter from "./components/AddLifter";
+import Footer from "./components/Footer";
 
 interface Lifter {
   name: string;
@@ -21,7 +22,6 @@ const App: React.FC = () => {
   return (
     <>
       <Header showAddLifter={showAddLifter} toggleAddLifter={toggleAddLifter} />
-      <Records lifters={lifters} />
       {showAddLifter && (
         <AddLifter
           setLifters={setLifters}
@@ -29,6 +29,8 @@ const App: React.FC = () => {
           toggleAddLifter={toggleAddLifter}
         />
       )}
+      <Records lifters={lifters} />
+      <Footer />
     </>
   );
 };

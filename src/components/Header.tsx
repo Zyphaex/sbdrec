@@ -1,5 +1,3 @@
-import React from "react";
-
 interface HeaderProps {
   showAddLifter: boolean;
   toggleAddLifter: () => void;

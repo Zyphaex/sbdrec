@@ -1,5 +1,3 @@
-import React from "react";
-
 interface Lifter {
   name: string;
   squat: number;
