@@ -1,21 +1,7 @@
-interface HeaderProps {
-  showAddLifter: boolean;
-  toggleAddLifter: () => void;
-}
-
-const Header: React.FC<HeaderProps> = ({ showAddLifter, toggleAddLifter }) => (
+const Header: React.FC = () => (
   <>
-    <nav>
-      <ul>
-        <li>
-          <button onClick={toggleAddLifter}>
-            {showAddLifter ? "Hide Add Lifter" : "Add Lifter"}
-          </button>
-        </li>
-      </ul>
-    </nav>
     <header>
-      <h1>SBDREC.com</h1>
+      <h1>SBDREC</h1>
     </header>
   </>
 );

@@ -1,3 +1,7 @@
+import React from "react";
+import RecordsTable from "./RecordsTable";
+import AddLifter from "./AddLifter";
+
 interface Lifter {
   name: string;
   squat: number;
@@ -7,29 +11,39 @@ interface Lifter {
 
 interface RecordsProps {
   lifters: Lifter[];
+  showAddLifter: boolean;
+  toggleAddLifter: () => void;
+  setLifters: React.Dispatch<React.SetStateAction<Lifter[]>>;
 }
 
-const Records: React.FC<RecordsProps> = ({ lifters }) => {
-  const sortedLifters = [...lifters].sort(
-    (a, b) => b.squat + b.bench + b.deadlift - (a.squat + a.bench + a.deadlift)
-  );
-
+const Records: React.FC<RecordsProps> = ({
+  lifters,
+  showAddLifter,
+  toggleAddLifter,
+  setLifters,
+}) => {
   return (
     <>
-      <h2>Records</h2>
-      {sortedLifters.length === 0 ? (
-        <p>No records to display.</p>
-      ) : (
-        <ul>
-          {sortedLifters.map((lifter, index) => (
-            <li key={index}>
-              {lifter.name}: Squat: {lifter.squat}kg, Bench: {lifter.bench}kg,
-              Deadlift: {lifter.deadlift}kg, Total:{" "}
-              {lifter.squat + lifter.bench + lifter.deadlift}kg
+      <div className="col">
+        <h2>Records</h2>
+        <nav>
+          <ul>
+            <li>
+              <button onClick={toggleAddLifter}>
+                {showAddLifter ? "Hide Add Lifter" : "Add Lifter"}
+              </button>
             </li>
-          ))}
-        </ul>
+          </ul>
+        </nav>
+      </div>
+      {showAddLifter && (
+        <AddLifter
+          setLifters={setLifters}
+          lifters={lifters}
+          toggleAddLifter={toggleAddLifter}
+        />
       )}
+      <RecordsTable lifters={lifters} />
     </>
   );
 };
